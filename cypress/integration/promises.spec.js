@@ -3,7 +3,7 @@ it('sem testes', () => { })
 const getSomething = ()=>{
 return new Promise((resolve, reject) => {
 setTimeout(()=> {
-    resolve(13);
+    resolve(16);
 }, 1000)
 
 })
