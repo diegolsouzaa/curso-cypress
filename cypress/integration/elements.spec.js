@@ -60,7 +60,7 @@ describe('Work with basic elements', ()=>{
 
     })
 
-    it.only('checkbox', ()=>{
+    it('checkbox', ()=>{
 
         cy.get('#formComidaPizza').click().should('be.checked')
 
@@ -69,7 +69,7 @@ describe('Work with basic elements', ()=>{
         cy.get('#formComidaPizza').should('not.be.checked')
     })
 
-    it.only('combobox', ()=>{
+    it('combobox', ()=>{
         // para selecionar o item de um combo, podemos usar tanto o texto conforme esse teste ou ...
         cy.get('[data-test=dataEscolaridade]').select('2o grau completo')
         .should('have.value', '2graucomp')
@@ -78,7 +78,17 @@ describe('Work with basic elements', ()=>{
         cy.get('[data-test=dataEscolaridade]').select('1graucomp')
         .should('have.value', '1graucomp')
 
-        // TODO validar as opçoes exibidas no combo
+        // validar as opçoes exibidas no combo
+        cy.get('[data-test=dataEscolaridade] option').should('have.length', 8)
+        cy.get('[data-test=dataEscolaridade] option').then($arr =>{
+
+            const values = []
+            $arr.each(function() {
+                values.push(this.innerHTML)
+            })
+            expect(values).to.include.members(['Superior', 'Mestrado'])
+        })
+
     })
 
     it.only('comboMultiplo', ()=>{
@@ -86,6 +96,18 @@ describe('Work with basic elements', ()=>{
         cy.get('[data-testid=dataEsportes]').select(['natacao', 'Corrida', 'nada'])
 
         //TODO validar opçoes selecionadas do combo multiplo
+        cy.get('[data-testid=dataEsportes]').then($el=>{
+            expect($el.val()).to.be.deep.equal(['natacao', 'Corrida', 'nada'])
+            expect($el.val()).to.have.length(3)
+        })
+
+        cy.get('[data-testid=dataEsportes]')
+        .invoke('val')
+        .should('eql', ['natacao', 'Corrida', 'nada'])
+
+
+
+
         
 
     })
