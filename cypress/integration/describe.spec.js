@@ -1,14 +1,14 @@
 /// <reference types="cypress"/>
 
-it('A external test...', ()=> {
+it.only('A external test...', ()=> {
 
 
 })
 
 describe('Should group tests', ()=> {
 
-    describe('Should group more specific test', ()=>{
-        it.skip('teste dentro do grupo', ()=>{
+    describe.skip('Should group more specific test', ()=>{
+        it('teste dentro do grupo', ()=>{
 
         })
 

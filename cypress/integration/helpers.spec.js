@@ -15,7 +15,7 @@ describe('helpers', ()=>{
 
     })
 
-    it.only('its', ()=>{
+    it('its', ()=>{
         const obj = {nome:'User', idade:20}
         cy.wrap(obj).should('have.property', 'nome', 'User')
 
@@ -29,11 +29,8 @@ describe('helpers', ()=>{
 
         cy.visit('http://www.wcaquino.me/cypress/componentes.html')
         cy.title().its('length').should('equal', 20)
-
-
-
-
     })
 
-
+    it.only('invoke', ()=>{
+    })
 })

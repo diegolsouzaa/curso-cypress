@@ -10,6 +10,9 @@ describe('Cypress basics', ()=>{
 
     cy.title().should('contain', 'Campo').debug()
 
+    let syncTitle
+    
+
     cy.title().then(title=>{
         console.log(title)
         cy.get('#formNome').type(title)
@@ -27,6 +30,7 @@ describe('Cypress basics', ()=>{
     // })
 
     cy.title().should('to.be.equal', 'Campo de Treinamento').should('contain', 'Campo')
+    
 
     cy.title().should('be.equal', 'Campo de Treinamento').and('contain', 'Campo')
 
