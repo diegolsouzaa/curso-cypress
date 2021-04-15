@@ -23,3 +23,35 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
+
+import loc from './locators'
+
+Cypress.Commands.add('login', ()=>{
+
+        cy.visit('http://barrigareact.wcaquino.me/')
+        cy.get(loc.LOGIN.USER).type('diego1608@email.com')
+        cy.get(loc.LOGIN.PASSWORD).type('1234')
+        cy.get(loc.LOGIN.BTN_LOGIN).click()
+        cy.get(loc.MESSAGE).should('contain','Bem vindo')
+
+})
+
+Cypress.Commands.add('getToken', (user, passwd)=>{
+    cy.request({
+
+        method: 'POST',
+        url:'/signin',
+        body:{
+            email: user,
+            redirecionar: false,
+            senha: passwd
+        }
+        
+    }).its('body.token').should('not.be.empty').then(token =>{
+        return token
+    })
+
+})
+
+
+
