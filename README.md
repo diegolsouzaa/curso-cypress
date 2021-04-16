@@ -15,7 +15,7 @@ https://nodejs.org/en/
 Optei por utilizar a mesma versão do curso, para evitar problemas.
 
 ## Para abrir o cypress executar o seguinte comando dentro da pasta do projeto  
-'./node_modules/.bin/cypress open'
+`./node_modules/.bin/cypress open`
 
 
 
